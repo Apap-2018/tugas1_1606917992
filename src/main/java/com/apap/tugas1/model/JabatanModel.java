@@ -27,13 +27,13 @@ public class JabatanModel implements Serializable {
     @Column(name = "gaji_pokok", nullable = false)
     private double gajiPokok;
 
-//    @ManyToMany(fetch = FetchType.LAZY,
-//            cascade = {
-//                    CascadeType.PERSIST,
-//                    CascadeType.MERGE
-//            },
-//            mappedBy = "jabatanList")
-//    private List<PegawaiModel> pegawaiList;
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            },
+            mappedBy = "jabatanList")
+    private List<PegawaiModel> pegawaiList;
 
     public long getId() {
         return id;
@@ -67,11 +67,11 @@ public class JabatanModel implements Serializable {
         this.gajiPokok = gajiPokok;
     }
 
-//    public List<PegawaiModel> getPegawaiList() {
-//        return pegawaiList;
-//    }
-//
-//    public void setPegawaiList(List<PegawaiModel> pegawaiList) {
-//        this.pegawaiList = pegawaiList;
-//    }
+    public List<PegawaiModel> getPegawaiList() {
+        return pegawaiList;
+    }
+
+    public void setPegawaiList(List<PegawaiModel> pegawaiList) {
+        this.pegawaiList = pegawaiList;
+    }
 }
