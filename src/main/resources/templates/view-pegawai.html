@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragment :: head"></head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+
+<div class="container-fluid">
+    <h3 th:text="'Lihat Data Pegawai - ' + ${pegawai.nip}"></h3>
+    <p th:text="'NIP					' + ${pegawai.nip}"></p>
+    <p th:text="'Nama					' + ${pegawai.nama}"></p>
+    <p th:text="'Tempat Lahir			' + ${pegawai.tempatLahir}"></p>
+    <p th:text="'Tanggal Lahir			' + ${pegawai.tanggalLahir}"></p>
+    <p th:text="'Tahun Masuk			' + ${pegawai.tahunMasuk}"></p>
+    <p th:text="'Nama Instansi			' + ${instansi}"></p>
+    <div th:each="jabatan : ${pegawai.jabatanList}">
+        <p th:text="'Jabatan				' + ${jabatan.nama}"></p>
+    </div>
+    <p th:text="'Gaji			' + ${gajiPegawai}"></p>
+
+    <form th:action="@{/pegawai/ubah}">
+        <input type="hidden" name="nip" th:value="${pegawai.nip}">
+        <button type="submit">Ubah</button>
+    </form>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/fragment :: head"></head>
+    <body>
+        <nav th:replace="fragments/fragment :: navbar"></nav>
+
+        <div class="container-fluid">
+            <div th:replace="fragments/fragment :: header"></div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            Lihat Data Pegawai berdasarkan NIP
+                        </div>
+                        <form th:action="@{/pegawai}" method="GET">
+                            <div class="card-body">
+                                <label for="nip">Masukkan Nomor Induk Pegawai</label>
+                                <input type="text" name="nip" class="form-control"/>
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

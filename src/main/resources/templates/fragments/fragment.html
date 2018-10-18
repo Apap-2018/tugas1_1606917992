@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:fragment="head">
+        <meta charset="UTF-8">
+        <title th:text="${title}"></title>
+        <head th:fragment="css">
+            <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+        </head>
+        <head th:fragment="js">
+            <script th:src="@{/js/bootstrap.min.js}"></script>
+        </head>
+    </head>
+
+    <body>
+        <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">SIPEG</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/}">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/}">Tambah Pegawai</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/}">Tambah Jabatan</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/}">Cari Pegawai</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/}">Lihat Semua Jabatan</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div th:fragment="header">
+            <h1>Sistem Informasi Kepegawaian</h1>
+            <h3>Selamat datang di Sistem Informasi Kepegawaian</h3>
+        </div>
+    </body>
+</html>
