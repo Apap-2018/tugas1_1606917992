@@ -60,4 +60,9 @@ public class PegawaiController {
         model.addAttribute("title", "View Pegawai Tertua dan Termuda");
         return "view-termudatertua";
     }
+
+    @RequestMapping(value = "/pegawai/tambah", method = RequestMethod.POST)
+    private String tambahPegawai(Model model){
+        return "tambah-pegawai";
+    }
 }
