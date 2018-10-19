@@ -74,4 +74,12 @@ public class JabatanController {
             return "view-jabatan";
         }
     }
+
+    @RequestMapping(value = "/jabatan/viewall", method = RequestMethod.GET)
+    private String viewAllJabatan(Model model){
+        List<JabatanModel> listJabatan = jabatanService.getListJabatan();
+        model.addAttribute("title", "Lihat Semua Jabatan");
+        model.addAttribute("listJabatan", listJabatan);
+        return "viewall-jabatan";
+    }
 }
