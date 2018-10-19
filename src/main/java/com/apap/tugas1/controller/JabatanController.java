@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Controller
 public class JabatanController {
     @Autowired
@@ -35,8 +37,8 @@ public class JabatanController {
     private String viewJabatan(@RequestParam(value = "idJabatan", required = true) Long id, Model model) {
         model.addAttribute("title", "View Detail Jabatan");
 
-        JabatanModel detailJabatan = jabatanService.getDetailJabatanById(id);
-        model.addAttribute("detailJabatan", detailJabatan);
+        JabatanModel jabatan = jabatanService.getDetailJabatanById(id);
+        model.addAttribute("jabatan", jabatan);
 
         return "view-jabatan";
     }
@@ -55,5 +57,21 @@ public class JabatanController {
         model.addAttribute("message", "Data jabatan berhasil diubah.");
         model.addAttribute("jabatan", jabatan);
         return "edit-jabatan";
+    }
+
+    @RequestMapping(value = "/jabatan/hapus", method = RequestMethod.POST)
+    private String hapusJabatan(@ModelAttribute JabatanModel jabatan, Model model) throws Exception{
+        try {
+            System.out.println(jabatan.getId());
+            jabatanService.deleteJabatanById(jabatan.getId());
+            model.addAttribute("message", "Jabatan berhasil dihapus");
+            return "home";
+        } catch (Exception e) {
+            model.addAttribute("message", "Jabatan gagal dihapus.");
+            model.addAttribute("jabatan", jabatanService.getDetailJabatanById(jabatan.getId()));
+            List<JabatanModel> listAllJabatan = jabatanService.getListJabatan();
+            model.addAttribute("listAllJabatan", listAllJabatan);
+            return "view-jabatan";
+        }
     }
 }

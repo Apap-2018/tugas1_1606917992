@@ -25,6 +25,11 @@ public class JabatanServiceImpl implements JabatanService {
     }
 
     @Override
+    public void deleteJabatanById(Long id) {
+        jabatanDb.deleteById(id);
+    }
+
+    @Override
     public void updateJabatan(JabatanModel jabatanModel) {
         jabatanDb.save(jabatanModel);
     }

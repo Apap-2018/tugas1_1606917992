@@ -7,6 +7,13 @@
         <div class="container-fluid">
             <div th:replace="fragments/fragment :: header"></div>
 
+            <div th:if="${message != null}">
+                <div class="alert green">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <strong>Success!</strong> <p th:text="${message}"></p>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-md-6">
                     <div class="card">

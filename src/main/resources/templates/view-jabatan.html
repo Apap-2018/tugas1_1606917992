@@ -5,17 +5,24 @@
 <nav th:replace="fragments/fragment :: navbar"></nav>
 
 <div class="container-fluid">
-    <h3 th:text="'Detail Jabatan ' + ${detailJabatan.nama}"></h3>
-    <p th:text="'Nama				' + ${detailJabatan.nama}"></p>
-    <p th:text="'Deskripsi			' + ${detailJabatan.deskripsi}"></p>
-    <p th:text="'Gaji Pokok			' + ${detailJabatan.gajiPokok}"></p>
+    <div th:if="${message != null}">
+        <div class="alert red">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>Opps!</strong> <p th:text="${message}"></p>
+        </div>
+    </div>
+
+    <h3 th:text="'Detail Jabatan ' + ${jabatan.nama}"></h3>
+    <p th:text="'Nama				' + ${jabatan.nama}"></p>
+    <p th:text="'Deskripsi			' + ${jabatan.deskripsi}"></p>
+    <p th:text="'Gaji Pokok			' + ${jabatan.gajiPokok}"></p>
 
     <form th:action="@{/jabatan/ubah}">
-        <input type="hidden" name="idJabatan" th:value="${detailJabatan.id}">
+        <input type="hidden" name="idJabatan" th:value="${jabatan.id}">
         <button type="submit">Ubah</button>
     </form>
-    <form th:action="@{/jabatan/hapus}">
-        <input type="hidden" name="idJabatan" th:value="${detailJabatan.id}">
+    <form th:action="@{/jabatan/hapus}" th:object="${jabatan}" method="POST">
+        <input type="hidden" th:field="*{id}">
         <button type="submit">Hapus</button>
     </form>
 
