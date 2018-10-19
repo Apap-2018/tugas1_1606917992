@@ -53,6 +53,28 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            Lihat Pegawai Termuda dan Tertua
+                        </div>
+                        <form th:action="@{/pegawai/termuda-tertua}" method="GET">
+                            <div class="card-body">
+                                <label for="instansi">Pilih Instansi</label>
+                                <select class="form-control" name="idInstansi">
+                                    <option value="0">Pilih Instansi</option>
+                                    <option th:each="instansi : ${listAllInstansi}"
+                                            th:value="${instansi.id}"
+                                            th:text="${instansi.nama} + ' - ' + ${instansi.provinsi.nama}">
+                                    </option>
+                                </select>
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
 
