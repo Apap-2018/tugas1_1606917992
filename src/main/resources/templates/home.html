@@ -23,7 +23,32 @@
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            Lihat Detail Jabatan
+                        </div>
+                        <form th:action="@{/jabatan/view}" method="GET">
+                            <div class="card-body">
+                                <label for="jabatan">Pilih Jabatan</label>
+                                <select class="form-control" name="idJabatan">
+                                    <option value="0">Pilih Jabatan</option>
+                                    <option th:each="jabatan : ${listAllJabatan}"
+                                            th:value="${jabatan.id}"
+                                            th:text="${jabatan.nama}">
+                                    </option>
+                                </select>
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
+
+
 
     </body>
 </html>

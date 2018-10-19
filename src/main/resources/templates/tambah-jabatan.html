@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragment :: head"></head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+
+<div class="container-fluid">
+
+    <div th:if="${message != null}">
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>Success!</strong> <p th:text="${message}"></p>
+        </div>
+    </div>
+
+    <h3>Tambah Jabatan</h3>
+
+    <form th:action="@{/jabatan/tambah}" th:object="${jabatan}" method="POST">
+        <label for="nama">Nama</label>
+        <input type="text" name="nama" />
+
+        <label for="deskripsi">Deskripsi</label>
+        <input type="text" name="deskripsi" />
+
+        <label for="gajiPokok">Gaji Pokok</label>
+        <input type="number" name="gajiPokok" />
+
+        <button type="submit">Simpan</button>
+    </form>
+</div>
+
+</body>
+</html>
