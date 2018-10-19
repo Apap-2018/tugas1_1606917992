@@ -11,11 +11,11 @@
     <p th:text="'Gaji Pokok			' + ${detailJabatan.gajiPokok}"></p>
 
     <form th:action="@{/jabatan/ubah}">
-        <input type="hidden" name="id" th:value="${detailJabatan.id}">
+        <input type="hidden" name="idJabatan" th:value="${detailJabatan.id}">
         <button type="submit">Ubah</button>
     </form>
     <form th:action="@{/jabatan/hapus}">
-        <input type="hidden" name="id" th:value="${detailJabatan.id}">
+        <input type="hidden" name="idJabatan" th:value="${detailJabatan.id}">
         <button type="submit">Hapus</button>
     </form>
 

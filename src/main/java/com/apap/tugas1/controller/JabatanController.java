@@ -40,4 +40,20 @@ public class JabatanController {
 
         return "view-jabatan";
     }
+
+    @RequestMapping(value = "/jabatan/ubah", method = RequestMethod.GET)
+    private String ubahJabatan(@RequestParam(value = "idJabatan") Long id, Model model) {
+        model.addAttribute("title", "Ubah Jabatan");
+        model.addAttribute("jabatan", jabatanService.getDetailJabatanById(id));
+        return "edit-jabatan";
+    }
+
+    @RequestMapping(value = "/jabatan/ubah", method = RequestMethod.POST)
+    private String ubahJabatanSubmit(@ModelAttribute JabatanModel jabatan, Model model){
+        jabatanService.updateJabatan(jabatan);
+        model.addAttribute("title", "Ubah Jabatan");
+        model.addAttribute("message", "Data jabatan berhasil diubah.");
+        model.addAttribute("jabatan", jabatan);
+        return "edit-jabatan";
+    }
 }
