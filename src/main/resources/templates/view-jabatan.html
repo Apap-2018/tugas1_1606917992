@@ -16,6 +16,7 @@
     <p th:text="'Nama				' + ${jabatan.nama}"></p>
     <p th:text="'Deskripsi			' + ${jabatan.deskripsi}"></p>
     <p th:text="'Gaji Pokok			' + ${jabatan.gajiPokok}"></p>
+    <p th:text="'Jumlah Pegawai		' + ${jumlahPegawai}"></p>
 
     <form th:action="@{/jabatan/ubah}">
         <input type="hidden" name="idJabatan" th:value="${jabatan.id}">

@@ -1,6 +1,7 @@
 package com.apap.tugas1.controller;
 
 import com.apap.tugas1.model.JabatanModel;
+import com.apap.tugas1.model.PegawaiModel;
 import com.apap.tugas1.service.JabatanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,6 +40,9 @@ public class JabatanController {
 
         JabatanModel jabatan = jabatanService.getDetailJabatanById(id);
         model.addAttribute("jabatan", jabatan);
+
+        List<PegawaiModel> pegawaiJabatan = jabatanService.getDetailJabatanById(id).getPegawaiList();
+        model.addAttribute("jumlahPegawai", pegawaiJabatan.size());
 
         return "view-jabatan";
     }

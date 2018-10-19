@@ -15,7 +15,7 @@
     <div th:each="jabatan : ${pegawai.jabatanList}">
         <p th:text="'Jabatan				' + ${jabatan.nama}"></p>
     </div>
-    <p th:text="'Gaji			' + ${gajiPegawai}"></p>
+    <p th:text="'Gaji			        ' + ${gajiPegawai}"></p>
 
     <form th:action="@{/pegawai/ubah}">
         <input type="hidden" name="nip" th:value="${pegawai.nip}">
