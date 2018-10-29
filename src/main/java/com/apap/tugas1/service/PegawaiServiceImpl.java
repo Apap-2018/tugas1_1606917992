@@ -53,6 +53,32 @@ public class PegawaiServiceImpl implements PegawaiService {
         return pegawaiDb.findByInstansiAndTanggalLahirAndTahunMasuk(instansi, tanggalLahir, tahunMasuk);
     }
 
+    @Override
+    public PegawaiModel findFirstByNipStartingWithOrderByNipDesc(String nipPegawaiWithoutSequence) {
+        return pegawaiDb.findFirstByNipStartingWithOrderByNipDesc(nipPegawaiWithoutSequence);
+    }
+
+    @Override
+    public List<PegawaiModel> getPegawaiList() {
+        return pegawaiDb.findAll();
+    }
+
+    @Override
+    public List<PegawaiModel> getPegawaiByInstansi(InstansiModel instansi) {
+        return pegawaiDb.findByInstansi(instansi);
+    }
+
+    @Override
+    public void update(PegawaiModel newPegawai) {
+        InstansiModel instansi = newPegawai.getInstansi();
+        Date tanggalLahir = newPegawai.getTanggalLahir();
+        String tahunMasuk = newPegawai.getTahunMasuk();
+
+        newPegawai.setNip(this.nipMaker(instansi, tanggalLahir, tahunMasuk));
+
+        pegawaiDb.save(newPegawai);
+    }
+
     private String nipMaker(InstansiModel instansi, Date tanggalLahir, String tahunMasuk) {
         String nip = "";
 
@@ -66,14 +92,20 @@ public class PegawaiServiceImpl implements PegawaiService {
         nip += tahunMasuk;
 
         int nomorPegawai = 1;
-        List<PegawaiModel> listPegawaiNipMirip = this.getPegawaiByInstansiAndTanggalLahirAndTahunMasuk(instansi, tanggalLahir, tahunMasuk);
-        if (!listPegawaiNipMirip.isEmpty())
-            nomorPegawai = (int) Long.parseLong(listPegawaiNipMirip.get(listPegawaiNipMirip.size() - 1).getNip())%100 + 1;
+//        List<PegawaiModel> listPegawaiNipMirip = this.getPegawaiByInstansiAndTanggalLahirAndTahunMasuk(instansi, tanggalLahir, tahunMasuk);
+//        if (!listPegawaiNipMirip.isEmpty())
+//            nomorPegawai = (int) Long.parseLong(listPegawaiNipMirip.get(listPegawaiNipMirip.size() - 1).getNip())%100 + 1;
+
+        String nipPegawaiWithoutSeq = kodeInstansi + tanggalLahirString + tahunMasuk;
+        PegawaiModel lastPegawaiNipMirip = this.findFirstByNipStartingWithOrderByNipDesc(nipPegawaiWithoutSeq);
+        if (lastPegawaiNipMirip != null){
+            nomorPegawai += Integer.parseInt(lastPegawaiNipMirip.getNip().substring(14));
+        }
         String stringNomorPegawai = "";
         if (nomorPegawai / 10 == 0){
             stringNomorPegawai += "0" + nomorPegawai;
         } else {
-            stringNomorPegawai += nomorPegawai;
+            stringNomorPegawai += Integer.toString(nomorPegawai);
         }
         nip += stringNomorPegawai;
 

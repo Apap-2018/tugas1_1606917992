@@ -13,4 +13,8 @@ public interface PegawaiService {
     PegawaiModel getPegawaiTertua(InstansiModel instansi);
     void addPegawai(PegawaiModel pegawai);
     List<PegawaiModel> getPegawaiByInstansiAndTanggalLahirAndTahunMasuk(InstansiModel instansi, Date tanggalLahir, String tahunMasuk);
+    PegawaiModel findFirstByNipStartingWithOrderByNipDesc(String nipPegawaiWithoutSequence);
+    List<PegawaiModel> getPegawaiList();
+    List<PegawaiModel> getPegawaiByInstansi(InstansiModel instansi);
+    void update(PegawaiModel newPegawai);
 }
