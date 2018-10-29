@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +16,6 @@ import java.util.List;
 @Table(name = "pegawai")
 public class PegawaiModel implements Serializable {
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -49,11 +49,7 @@ public class PegawaiModel implements Serializable {
     @JsonIgnore
     private InstansiModel instansi;
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            })
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "jabatan_pegawai",
             joinColumns = { @JoinColumn(name = "id_pegawai") },
             inverseJoinColumns = { @JoinColumn(name = "id_jabatan") })

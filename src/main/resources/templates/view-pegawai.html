@@ -11,7 +11,7 @@
     <p th:text="'Tempat Lahir			' + ${pegawai.tempatLahir}"></p>
     <p th:text="'Tanggal Lahir			' + ${pegawai.tanggalLahir}"></p>
     <p th:text="'Tahun Masuk			' + ${pegawai.tahunMasuk}"></p>
-    <p th:text="'Nama Instansi			' + ${instansi}"></p>
+    <p th:text="'Nama Instansi			' + ${pegawai.instansi.nama}"></p>
     <div th:each="jabatan : ${pegawai.jabatanList}">
         <p th:text="'Jabatan				' + ${jabatan.nama}"></p>
     </div>

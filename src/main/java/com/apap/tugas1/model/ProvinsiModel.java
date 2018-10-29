@@ -1,5 +1,7 @@
 package com.apap.tugas1.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -23,6 +25,7 @@ public class ProvinsiModel implements Serializable {
     private double presentaseTunjangan;
 
     @OneToMany(mappedBy = "provinsi", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @JsonIgnore
     private List<InstansiModel> instansiList;
 
     public long getId() {
