@@ -35,7 +35,7 @@
 								<option disabled="disabled" selected="selected" >Pilih Instansi</option>
 								<option th:each="instansi : ${allInstansi}"
 										th:value="${instansi.id}"
-										th:text="${instansi.nama}"></option>
+										th:text="${instansi.nama} + ${instansi.provinsi.nama}"></option>
 								</select>
 							</td>
 						</tr>

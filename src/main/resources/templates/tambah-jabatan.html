@@ -1,33 +1,57 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="fragments/fragment :: head"></head>
-<body>
-<nav th:replace="fragments/fragment :: navbar"></nav>
 
-<div class="container-fluid">
+<body class="bg-light">
+    <nav th:replace="fragments/fragment :: navbar"></nav>
 
-    <div th:if="${message != null}">
-        <div class="alert green">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-            <strong>Success!</strong> <p th:text="${message}"></p>
+    <div class="container">
+
+        <div th:if="${message != null}">
+            <div class="alert green">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <strong>Success!</strong> <p th:text="${message}"></p>
+            </div>
         </div>
+
+        <div class="py-5 text-center">
+            <h2>Tambah Jabatan</h2>
+            <p class="lead">Menambahkan jabatan baru ke dalam sistem.</p>
+        </div>
+
+        <hr class="mb-4">
+
+        <form class="needs-validation" th:action="@{/jabatan/tambah}" th:object="${jabatan}" method="POST">
+            <div class="row">
+                <div class="mb-3">
+                    <label for="nama">Nama</label>
+                    <input type="text" class="form-control" name="nama" id="nama" required/>
+                    <div class="invalid-feedback">
+                        Masukkan nama jabatan.
+                    </div>
+                </div>
+                <br>
+                <div class="mb-3">
+                    <label for="deskripsi">Deskripsi</label>
+                    <input type="text" class="form-control" name="deskripsi" id="deskripsi" required/>
+                    <div class="invalid-feedback">
+                        Masukkan deskripsi jabatan.
+                    </div>
+                </div>
+                <br>
+                <div class="mb-3">
+                    <label for="gajiPokok">Gaji Pokok</label>
+                    <input type="number" class="form-control" name="gajiPokok" id="gajiPokok" required/>
+                    <div class="invalid-feedback">
+                        Masukkan deskripsi jabatan.
+                    </div>
+                </div>
+            </div>
+            <hr class="mb-4">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Simpan</button>
+        </form>
     </div>
-
-    <h3>Tambah Jabatan</h3>
-
-    <form th:action="@{/jabatan/tambah}" th:object="${jabatan}" method="POST">
-        <label for="nama">Nama</label>
-        <input type="text" name="nama" />
-
-        <label for="deskripsi">Deskripsi</label>
-        <input type="text" name="deskripsi" />
-
-        <label for="gajiPokok">Gaji Pokok</label>
-        <input type="number" name="gajiPokok" />
-
-        <button type="submit">Simpan</button>
-    </form>
-</div>
-
 </body>
+
 </html>

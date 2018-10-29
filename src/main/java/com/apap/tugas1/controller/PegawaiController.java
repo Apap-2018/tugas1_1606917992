@@ -157,6 +157,7 @@ public class PegawaiController {
 
         model.addAttribute("pegawai", pegawai);
         model.addAttribute("gajiPegawai", pegawai.getGaji());
+        model.addAttribute("messageGreen", "Pegawai dengan NIP " + pegawai.getNip() + " berhasil ditambahkan.");
         return "view-pegawai";
     }
 
@@ -350,6 +351,7 @@ public class PegawaiController {
 
         model.addAttribute("pegawai", pegawai);
         model.addAttribute("gajiPegawai", pegawai.getGaji());
+        model.addAttribute("messageGreen", "Pegawai dengan NIP " + pegawai.getNip() + " berhasil diubah.");
         return "view-pegawai";
     }
 }
